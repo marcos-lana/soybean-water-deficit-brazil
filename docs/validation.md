@@ -1,8 +1,16 @@
-# Validation and open checks
+# Validation and publication boundary
 
-- **S24:** original seven-CSV figure notebook executed on the researcher's Windows PC (Python 3.14.7), with user-confirmed visual match to the final figures. This reorganized copy changes only filenames, input/output paths, and documentation; the researcher reported successful local rerun of the reorganized copy in VS Code on 17 November 2026. This does not independently verify upstream analytical inputs.
-- **CSV inputs:** copied byte-for-byte from the previously validated seven-CSV package; reference old file names via `file_name_mapping.csv`. The 17-UF 2014–2023 TS01/TS02 tables were previously checked against the submitted manuscript table document.
-- **S25:** S25 notebook updated to use the standardized Earth Engine export task/file prefix `ts01_spatial_intersections_original`; computational procedures were not deliberately changed. Do not confuse it with the standalone TS01 preparation script. The S25 Earth Engine task has **not** been rerun as part of this publication. Asset availability and the exact execution environment remain to be verified.
-- **GEE application:** published app was publicly tested by the researcher. On 17 November 2026 the researcher supplied the JavaScript from their Earth Engine editor; that code replaced the previously reconstructed GitHub viewer. A source-level comparison found the same S06 asset, annual filtering, mosaic, classification, palette and UI behavior; differences were comments, formatting and equivalent temporary variables. This establishes correspondence with the researcher-provided source, not an independently retrieved Earth Engine deployment snapshot.
-- **Publication:** confirm rights to redistribute derived datasets and choose a license with the research group. Do not promise access to the restricted S12 code.
-- **Limitations:** reproduction of the seven figures from processed CSVs does not imply end-to-end reproducibility of water balance calculations, machine-learning models, or original crop yield inputs.
+## Local validation record
+
+- **S24:** The researcher reported successful execution of the reorganized figure-generation notebook in VS Code on 17 November 2026, using seven processed CSVs and confirming consistency with the manuscript figures. **Those CSVs are no longer in this public repository.**
+- **S25:** Its Earth Engine table-export basename was standardized. The original GEE task was not re-executed in this publication workflow. Source and supplementary CSVs have been removed from the public branch.
+- **TS01 preparation:** The standalone preparation script was locally tested by the researcher, but its required CSV inputs are not publicly distributed here.
+- **GEE viewer:** The live application was tested publicly by the researcher. On 17 November 2026, the JavaScript supplied from the Earth Engine editor replaced the earlier reconstructed copy. An independent deployment snapshot was not obtained.
+
+## Public release boundary
+
+All `.csv` and `.xlsx` files, including processed figure inputs and supplementary tables, were removed from the latest public branch at the researcher's explicit request. Research data must not be inferred to be publicly available from the retained scripts or historical audit documentation. The latest branch therefore does **not** provide complete reproducibility of manuscript figures or supplementary tables.
+
+**Important:** Standard GitHub file deletion does not erase prior commits. The deleted tabular files may remain retrievable via commit history until a separate repository-history purge is completed.
+
+The original models and spreadsheets for the DEF_ACUM calculation, group-owned S12, and Script 19 were not included in this repository. The public GEE image collection remains separately accessible and was not modified by this change.

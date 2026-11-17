@@ -1,58 +1,31 @@
 # Soybean water deficit in Brazil (2014–2023)
 
-Code, processed figure inputs, and supplementary tables for the rainfed soybean water deficit study in Brazil (2014–2023).
+Public code and documentation associated with the study of accumulated water deficit in rainfed soybean-growing areas across Brazil (2014–2023).
 
-**Repository:** https://github.com/marcos-lana/soybean-water-deficit-brazil
+## Data sharing restriction
 
-This repository uses short, descriptive file names in English. The original script IDs (S24, S25, S06) and file names are preserved in [`docs/file_name_mapping.csv`](docs/file_name_mapping.csv) with SHA-256 hashes.
+**The source, processed, and supplementary tabular datasets (.csv and .xlsx) have been removed from the public repository at the researcher's request.** No input spreadsheets for computing DEF_ACUM or processed tabular files for recreating manuscript figures are distributed here. Any previously published Git commit containing those files remains part of the repository's historical record unless that history is separately purged.
 
-## Reproduce manuscript figures
+**The scripts remain available for documentation and inspection, but some cannot execute without research data that are not distributed here.** This repository is not a complete, self-contained reproducibility package.
 
-The notebook [`scripts/generate_manuscript_figures.ipynb`](scripts/generate_manuscript_figures.ipynb) (S24) creates seven figure groups from the **seven processed CSVs** in `data/analysis/`. It **does not** recompute the sequential water balance, soybean yield, or the upstream model outputs. The CSV content is unchanged from the locally validated package; only filenames and paths were updated.
+## Scripts
 
-From the project root:
+- `scripts/generate_manuscript_figures.ipynb` (S24) creates manuscript figures **from seven separately held, processed CSV files**. Those inputs are not included. It does not recompute DEF_ACUM, soybean productivity, or the underlying sequential water balance.
+- `scripts/extract_spatial_units.ipynb` (S25) describes and implements the GEE spatial-intersection export previously used for TS01. Re-execution requires access to the configured Earth Engine assets and may export a CSV, which is **not** stored in this public repository.
+- `scripts/prepare_spatial_units_table.py` prepares a TS01 table from two source CSVs. Those inputs are **not** included; the script cannot be run as-is without them.
+- `gee/soybean_water_deficit_viewer.js` is the source supplied by the researcher from the Google Earth Engine editor. It uses six fixed visual classes for DEF_ACUM and does not recompute water-balance outputs.
 
-```bash
-python -m pip install -r requirements.txt
-jupyter lab scripts/generate_manuscript_figures.ipynb
-```
+## Public interactive visualization
 
-You may also open the notebook in VS Code and select your Python environment. Output files are written to `results/figures/manuscript_figures/` in PDF, SVG, PNG, and TIFF, according to the notebook's settings. Original figure output basenames (`Fig24_01`–`Fig24_07`) were deliberately retained for traceability with the validated manuscript graphics.
+- **Application:** https://ee-marcosguedeslana.projects.earthengine.app/view/soybean-water-deficit-in-brazil-20142023
+- **Image collection S06:** `projects/ee-marcosguedeslana/assets/BH_SOJA_SEQUEIRO_Unificada`
 
-**Local validation:** The original S24 package ran on the researcher's Windows machine using Python 3.14.7; the researcher confirmed that the generated figures matched the approved manuscript figures. **Local validation:** The researcher reported successfully executing the reorganized S24 notebook and TS01 preparation script in VS Code on 17 November 2026. This validates local execution of renamed paths, not independent reproduction of upstream analyses.
+The Earth Engine image collection contains **published gridded DEF_ACUM results** and is separate from the tabular data previously shared on GitHub. Its sharing settings were not changed as part of removing spreadsheet files.
 
-## Supplementary tables
+## Research provenance and limitations
 
-- `data/supplementary/ts01_spatial_units.csv`: TS01 table for the 17 UFs, derived from the vector intersection export and TS02 range information.
-- `data/supplementary/ts02_soybean_planted_area_by_state.csv`: TS02, UF-level planted soybean areas from 2014–2023 (IBGE/SIDRA PAM Table 5457), with summary statistics.
-- `data/supplementary/ts02_soybean_planted_area_long.csv`: identical annual areas in tidy format.
-- `data/supplementary/ts01_ts02_tables.xlsx`: convenience workbook with the corresponding data and audit notes.
-- `data/sources/ts01_spatial_intersections_original.csv`: unmodified S25 output. The Bahia `Ilhas Oceânicas` category is excluded only in the **derived** TS01 file, as documented in the supplementary audit.
-
-Regenerate the derived TS01 CSV without Google Earth Engine access:
-
-```bash
-python scripts/prepare_spatial_units_table.py
-```
-
-The S25 vector-intersection notebook is provided as `scripts/extract_spatial_units.ipynb`. Its Earth Engine export task and output filename have been standardized to `ts01_spatial_intersections_original.csv` (original output basename: `25_TS01_resumo_espacial_v4.csv`, retained in the name mapping). The supplied source CSV remains byte-for-byte unchanged. S25 does not independently generate the TS02 table. Its GEE assets are not guaranteed to be public, so access may be required to reproduce those source spatial intersections.
-
-## Earth Engine map viewer
-
-- **Public application:** https://ee-marcosguedeslana.projects.earthengine.app/view/soybean-water-deficit-in-brazil-20142023
-- **Public read-only collection S06:** `projects/ee-marcosguedeslana/assets/BH_SOJA_SEQUEIRO_Unificada`
-- **App source code:** `gee/soybean_water_deficit_viewer.js` — replaced with the source supplied by the researcher from the Earth Engine editor on 17 November 2026. It uses six fixed color classes (0–30, 30–90, 90–180, 180–280, 280–400, 400–620 mm). Values above 620 mm appear in the highest class **for display only**; original DEF_ACUM raster values are not altered. The original code was compared with the earlier reconstructed GitHub copy; no functional changes to the mapping logic were identified. Independent verification against a deployment snapshot was not performed.
-
-## Sharing boundaries and scientific provenance
-
-- **S12** (`Pipeline_DSM_Brazil_sisy_marcos_guedes_VSCode.ipynb`) is group-owned spatial modeling code and is **not included**. Contact the authors for procedural clarification; this statement does not promise distribution of the code.
-- **Script 19** is not included as requested. Some input CSVs originate in preceding analyses; their upstream computational provenance should be documented separately without claiming S24 generated those inputs.
-- Final sharing rights, licensing, contributors/author credit, and any restrictions on source GEE assets require confirmation with the research team. **No license or DOI has been assigned by this package.**
-- The source municipal IBGE spreadsheet is **not included**; derived UF-level totals are supplied for manuscript table verification, with the originating source indicated.
-
-## Documentation
-
-- `docs/file_name_mapping.csv`: original/public name crosswalk and SHA-256 hashes.
-- `docs/validation.md`: scope of checks and pending reproducibility verification.
-- `docs/figure_data_audit.md`, `docs/supplementary_qa.md`: original data checking reports.
-- `manifest_sha256.csv`: content hashes for all files except the manifest itself.
+- The original computational models and spreadsheets used to calculate DEF_ACUM were **not** published in this GitHub repository.
+- Group-owned spatial modeling script S12 and Script 19 are not included.
+- The files in `docs/` are historical methodological and audit notes. References to source CSVs describe restricted local research files, **not data distributed in this repository**.
+- The original figures were verified by the researcher on their local machine. Their processed CSV inputs are not publicly available here.
+- Redistribution rights, license, and authorship conditions for the remaining code and assets should be confirmed with the research team. No license or repository DOI is claimed.
