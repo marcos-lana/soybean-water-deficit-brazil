@@ -41,7 +41,7 @@ The S25 vector-intersection notebook is provided as `scripts/extract_spatial_uni
 
 - **Public application:** https://ee-marcosguedeslana.projects.earthengine.app/view/soybean-water-deficit-in-brazil-20142023
 - **Public read-only collection S06:** `projects/ee-marcosguedeslana/assets/BH_SOJA_SEQUEIRO_Unificada`
-- **Code prepared for GitHub:** `gee/soybean_water_deficit_viewer.js` — six fixed color classes (0–30, 30–90, 90–180, 180–280, 280–400, 400–620 mm). Values above 620 mm appear in the highest class **for display only**; the original DEF_ACUM raster values are not altered. The visualizer's file was reconstructed from the code approved in the chat; **compare with the exact live Earth Engine app source before release**.
+- **App source code:** `gee/soybean_water_deficit_viewer.js` — replaced with the source supplied by the researcher from the Earth Engine editor on 17 November 2026. It uses six fixed color classes (0–30, 30–90, 90–180, 180–280, 280–400, 400–620 mm). Values above 620 mm appear in the highest class **for display only**; original DEF_ACUM raster values are not altered. The original code was compared with the earlier reconstructed GitHub copy; no functional changes to the mapping logic were identified. Independent verification against a deployment snapshot was not performed.
 
 ## Sharing boundaries and scientific provenance
 
