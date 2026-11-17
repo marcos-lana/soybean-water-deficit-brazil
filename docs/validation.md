@@ -1,0 +1,8 @@
+# Validation and open checks
+
+- **S24:** original seven-CSV figure notebook executed on the researcher's Windows PC (Python 3.14.7), with user-confirmed visual match to the final figures. This reorganized copy changes only filenames, input/output paths, and documentation; the researcher reported successful local rerun of the reorganized copy in VS Code on 17 November 2026. This does not independently verify upstream analytical inputs.
+- **CSV inputs:** copied byte-for-byte from the previously validated seven-CSV package; reference old file names via `file_name_mapping.csv`. The 17-UF 2014–2023 TS01/TS02 tables were previously checked against the submitted manuscript table document.
+- **S25:** S25 notebook updated to use the standardized Earth Engine export task/file prefix `ts01_spatial_intersections_original`; computational procedures were not deliberately changed. Do not confuse it with the standalone TS01 preparation script. The S25 Earth Engine task has **not** been rerun as part of this publication. Asset availability and the exact execution environment remain to be verified.
+- **GEE application:** published app publicly tested by researcher; the `.js` file in this package reproduces the conversation-approved six-class viewer. Compare byte-for-byte or line-by-line with the saved code of the live published app before submission.
+- **Publication:** confirm rights to redistribute derived datasets and choose a license with the research group. Do not promise access to the restricted S12 code.
+- **Limitations:** reproduction of the seven figures from processed CSVs does not imply end-to-end reproducibility of water balance calculations, machine-learning models, or original crop yield inputs.
